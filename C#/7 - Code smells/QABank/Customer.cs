@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace QABank
 {
-    public class Payee
+    public class Customer
     {
-        private Customer customer;
-        private DateTime date;
-        private double amount;
+        private string firstname, lastname, address;
+        public Dictionary<int, Account> accounts;
     }
 }

@@ -8,15 +8,15 @@ namespace QACalculator
 {
     public class Calculator
     {
-        public int Divide(String n1)
+        public int Divide(string n1)
         {
             int result = -9999;
             char separator = ',';
             // if doesn't contain a comma call this
             if (!n1.Contains(","))
                 separator = Utils.ValidSeperator(n1);    // slows down test
-            String[] numbers = n1.Split(separator);
-            foreach (String number in numbers)
+            string[] numbers = n1.Split(separator);
+            foreach (string number in numbers)
             {
                 if (!Utils.IsNumeric(number))
                 {
@@ -27,11 +27,11 @@ namespace QACalculator
             return result;
         }
 
-        public int Multiply(String n1)
+        public int Multiply(string n1)
         {
             int result = -9999;
-            String[] numbers = n1.Split(',');
-            foreach (String number in numbers)
+            string[] numbers = n1.Split(',');
+            foreach (string number in numbers)
             {
                 if (!Utils.IsNumeric(number))
                 {  // check number is valid
@@ -42,12 +42,12 @@ namespace QACalculator
             return result;
         }
 
-        public int Subtract(String n1)
+        public int Subtract(string n1)
         {
             int result = -9999;
 
-            String[] numbers = n1.Split(',');
-            foreach (String number in numbers)
+            string[] numbers = n1.Split(',');
+            foreach (string number in numbers)
             {
                 if (!Utils.IsNumeric(number))
                 {  // check number is valid

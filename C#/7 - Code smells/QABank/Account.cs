@@ -6,22 +6,33 @@ using System.Threading.Tasks;
 
 namespace QABank
 {
-    public class Account
+    public interface IAccount
+    {
+        // Write interface
+    }
+
+    public class Account : IAccount
     {
         // We would have getters/setters for these but left out to minimise the code
-        private string firstname, lastname, address;
+        private Customer owner;
         private int accountNumber;
         private double interest;
         private double overdraftLimit;
         private double balance;
-        private String accountType;
-        private List<Payee> directDebits = new List<Payee>();
-        private List<Payee> standingOrders = new List<Payee>();
+        private AccountType accountType;
+        private Dictionary<int, Payee> directDebits = new Dictionary<int, Payee>();
+        private Dictionary<int, Payee> standingOrders = new Dictionary<int, Payee>();
 
+        public Account(Customer owner)
+        {
+            // Left out rest of initialization for brevity
+            this.owner = owner;
+            owner.accounts.Add(accountNumber, this);
+        }
 
         public void WithDraw(double amount)
         {
-            if (amount > balance && accountType == "deposit")
+            if (amount >= balance && accountType == AccountType.Deposit)
                 return;
             balance -= amount;
         }
@@ -47,16 +58,21 @@ namespace QABank
         // used where account is current account
         public void ProcessDirectDebits()
         {
-            foreach (Payee payee in directDebits)
+            foreach (Payee payee in directDebits.Values)
             {
             }
         }
         // used where account is current account
         public void ProcessStandingOrders()
         {
-            foreach (Payee payee in standingOrders)
+            foreach (Payee payee in standingOrders.Values)
             {
             }
         }
+    }
+
+    enum AccountType
+    {
+        Deposit
     }
 }
